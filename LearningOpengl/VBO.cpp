@@ -1,17 +1,18 @@
 #include"VBO.h"
 
-VBO::VBO(const GLfloat vertices[], GLsizeiptr size, GLenum usage) {
+VBO::VBO(const std::vector<GLfloat>& vertices, GLenum usage) {
 	glGenBuffers(1, &ID);
 	Bind();
-	glBufferData(GL_ARRAY_BUFFER, size, vertices, usage);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() *sizeof(GLfloat),  
+		vertices.data(), usage);
 }
 
-void VBO::Bind() {
+void VBO::Bind() const{
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 }
-void VBO::Unbind() {
+void VBO::Unbind() const {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-void VBO::Delete() {
+void VBO::Delete() const {
 	glDeleteBuffers(1, &ID);
 }

@@ -10,12 +10,12 @@ VAO::VAO(VBO &vbo,EBO &ebo, GLuint index,
 	glEnableVertexAttribArray(index);
 }
 
-void VAO::Bind() {
+void VAO::Bind() const{
 	glBindVertexArray(ID);
 }
-void VAO::Unbind() {
+void VAO::Unbind() const{
 	glBindVertexArray(0);
 }
-void VAO::Delete() {
+void VAO::Delete() const{
 	glDeleteVertexArrays(1, &ID);
 }

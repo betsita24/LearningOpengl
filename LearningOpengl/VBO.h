@@ -1,15 +1,16 @@
 #pragma once
 #include<GL/glew.h>
+#include<vector>
 
 class VBO {
 private:
 	GLuint ID;
 public:
-	VBO(const GLfloat vertices[], GLsizeiptr size, GLenum usage);
+	VBO(const std::vector<GLfloat>& vertices, GLenum usage);
 	
 
 
-	void Bind();
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete() const;
 };

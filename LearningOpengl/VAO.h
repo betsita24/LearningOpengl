@@ -10,7 +10,7 @@ public:
 	VAO(VBO& vbo, EBO& ebo, GLuint index, 
 		GLsizei stride, const void* pointer);
 
-	void Bind();
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete() const;
 };

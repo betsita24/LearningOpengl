@@ -1,13 +1,14 @@
 #pragma once
 #include<GL/glew.h>
+#include<vector>
 
 class EBO {
 private:
 	GLuint ID;
 public:
-	EBO(const GLuint data[], GLsizeiptr size, GLenum usage);
+	EBO(const std::vector<GLuint> data, GLenum usage);
 
-	void Bind();
-	void Unbind();
-	void Delete();
+	void Bind() const;
+	void Unbind() const;
+	void Delete() const;
 };

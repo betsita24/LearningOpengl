@@ -2,12 +2,12 @@
 #include"GLFW/glfw3.h"
 #include"glm/glm.hpp"
 #include<iostream>
+#include<vector>
 
 
 #include"Shader.h"
-#include"VAO.h"
-#include"VBO.h"
-#include"EBO.h"
+#include"Floor.h"
+
 
 //used to resize the viewport when a user changes the window size
 void resize_callback(GLFWwindow* window, int width, int height) {
@@ -50,27 +50,10 @@ int main() {
 	glViewport(0, 0, 800, 800); //x,y lower left corner of the window
 
 
-	//vertex data for triangle
-	GLfloat vertices[]{
-		-0.5f,-0.5f,0.0f,
-		0.5f,-0.5f,0.0f,
-		0.5f,0.5f,0.0f,
-		-0.5f,0.5f,0.0f
-	};
-	GLuint indices[]{
-		0,1,2,
-		2,3,0
-	};
 
 
-
-
-	VBO vbo(vertices,sizeof(vertices), GL_STATIC_DRAW);
-	EBO ebo(indices, sizeof(vertices) ,GL_STATIC_DRAW);
-	VAO vao(vbo,ebo,0, 3 * sizeof(GLfloat), (void*)0);
-	
 	Shader shader("vertex.vs", "fragment.fs");
-
+	Rectangle rectangle(1.0f, 0.5f);
 
 	glfwSetFramebufferSizeCallback(window, resize_callback);
 
@@ -86,7 +69,7 @@ int main() {
 
 		shader.use();
 		shader.setFloat("color", greenColor);
-		vao.Bind();
+		rectangle.Draw();
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
