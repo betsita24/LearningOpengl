@@ -6,7 +6,7 @@ class EBO {
 private:
 	GLuint ID;
 public:
-	EBO(const std::vector<GLuint> data, GLenum usage);
+	EBO(const std::vector<GLuint>& data, GLenum usage);
 
 	void Bind() const;
 	void Unbind() const;

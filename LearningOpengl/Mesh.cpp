@@ -1,13 +1,14 @@
 #include "Mesh.h"
 
+
 Mesh::Mesh(const std::vector<GLfloat>& vertices,
-    const std::vector<GLuint>& indices)
+    const std::vector<GLuint>& indices,
+    const std::vector<V_Attrib>& attributes)
     : vbo(vertices, GL_STATIC_DRAW), 
     ebo(indices, GL_STATIC_DRAW),
-    vao(vbo, ebo, 0, 3 * sizeof(GLfloat), (void*)0),
+    vao(vbo, ebo,attributes ),
     indexCount(static_cast<GLsizei>(indices.size()))
 {
- 
 }
 
 Mesh::~Mesh() {

@@ -2,14 +2,16 @@
 
 #include "Mesh.h"
 
-class Rectangle {
+class Floor {
 private:
-    float width;
-    float height;
+    
+    std::vector<GLfloat> static generateVertices();
+    std::vector<GLuint> static generateIndices();
+
     Mesh mesh;
 
 public:
-    Rectangle(float width, float height);
+    Floor();
 
     void Draw() const;
 };

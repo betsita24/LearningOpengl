@@ -8,14 +8,16 @@
 
 class Mesh {
 private:
-    VAO vao;
+    
     VBO vbo;
     EBO ebo;
+    VAO vao;
     GLsizei indexCount = 0;
 
 public:
     Mesh(const std::vector<GLfloat>& vertices,
-        const std::vector<GLuint>& indices);
+        const std::vector<GLuint>& indices,
+        const std::vector<V_Attrib>& attributes);
 
     ~Mesh();
 

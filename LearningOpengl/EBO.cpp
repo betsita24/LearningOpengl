@@ -1,9 +1,35 @@
 #include"EBO.h"
+#include<iostream>
 
-EBO::EBO(const std::vector<GLuint> data, GLenum usage) {
-	glGenBuffers(1, &ID);
-	Bind();
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, data.size()*sizeof(GLuint),  data.data(), usage);
+void CheckGLErrors(const char* location)
+{
+    GLenum error;
+
+    while ((error = glGetError()) != GL_NO_ERROR)
+    {
+        std::cerr << "OpenGL error at "
+            << location << ": "
+            << error << std::endl;
+    }
+}
+EBO::EBO(const std::vector<GLuint>& data, GLenum usage)
+{
+    CheckGLErrors("Before EBO Generate");
+
+    glGenBuffers(1, &ID);
+
+    CheckGLErrors("After EBO Generate");
+
+    Bind();
+    CheckGLErrors("EBO Bind");
+
+    glBufferData(
+        GL_ELEMENT_ARRAY_BUFFER,
+        data.size() * sizeof(GLuint),
+        data.data(),
+        usage
+    );
+    CheckGLErrors("EBO Upload");
 }
 
 void EBO::Bind() const {
